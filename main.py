@@ -37,7 +37,7 @@ def export_csv():
         query_job = bq_client.query(query)
         df = query_job.to_dataframe()
 
-        file_id = f"{uuid.uuid4().hex}.csv"
+        file_id = f"{table_name}.csv"
         local_path = os.path.join(TEMP_DIR, file_id)
         df.to_csv(local_path, index=False, date_format="%Y-%m-%d %H:%M:%S", na_rep="")
 
