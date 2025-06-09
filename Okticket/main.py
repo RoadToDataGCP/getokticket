@@ -34,7 +34,17 @@ def export_csv():
         temp_filename = f"/tmp/{uuid.uuid4().hex}.csv"
         df.to_csv(temp_filename, index=False)
 
-        return send_file(temp_filename, mimetype='text/csv', as_attachment=True, download_name=f"{table_name}.csv")
+        return send_file(
+            temp_filename,
+            mimetype='text/csv',
+            as_attachment=True,
+            download_name=f"{table_name}.csv"
+        )
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
