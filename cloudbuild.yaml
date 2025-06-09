@@ -23,7 +23,7 @@ steps:
       '--region', 'europe-west1',
       '--platform', 'managed',
       '--allow-unauthenticated',
-      '--set-env-vars', 'PROJECT_ID=${r2d-interno-dev},DATASET_ID=${golden_okticket}'
+      '--set-env-vars', 'PROJECT_ID=${_PROJECT_ID},DATASET_ID=${_DATASET_ID}'
     ]
 
 images:
