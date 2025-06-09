@@ -14,6 +14,8 @@ bq_client = bigquery.Client()
 # Proyecto y dataset fijos definidos por entorno
 PROJECT_ID = os.getenv("PROJECT_ID")
 DATASET_ID = os.getenv("DATASET_ID")
+API_USER = os.getenv("API_USER")
+API_PASS =os.getenv("API_PASS")
 TEMP_DIR = "/tmp"
 
 @app.route("/export-csv", methods=["GET"])
@@ -23,7 +25,7 @@ def export_csv():
     user = request.args.get("user")
     password = request.args.get("pass")
 
-    if user != os.getenv("r2d") or password != os.getenv("12345"):
+    if user != (API_USER) or password != (API_PASS):
         return jsonify({"error": "Acceso no autorizado"}), 401
 
     table_name = request.args.get("table")
