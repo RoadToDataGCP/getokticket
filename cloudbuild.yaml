@@ -23,7 +23,7 @@ steps:
       '--region', 'europe-west1',
       '--platform', 'managed',
       '--allow-unauthenticated',
-      '--set-env-vars', 'PROJECT_ID=${_PROJECT_ID},DATASET_ID=${_DATASET_ID},API_USER=${_API_USER},API_PASS=${_API_PASS}'
+      '--set-env-vars', 'PROJECT_ID=${_PROJECT_ID},DATASET_ID=${_DATASET_ID},API_USER=${_API_USER},API_PASS=${_API_PASS},BUCKET_NAME=${_BUCKET_NAME}'
     ]
 
 images:

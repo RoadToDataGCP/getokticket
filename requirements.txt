@@ -1,5 +1,6 @@
 flask
 google-cloud-bigquery
+google-cloud-storage
 pandas
 python-dotenv
 pyarrow
