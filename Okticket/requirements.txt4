@@ -1,0 +1,4 @@
+flask
+google-cloud-bigquery
+pandas
+python-dotenv

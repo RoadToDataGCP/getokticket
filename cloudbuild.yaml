@@ -1,0 +1,32 @@
+steps:
+  # Paso 1: Construir la imagen Docker
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build',
+      '-t', 'gcr.io/r2d-interno-dev/csv-api:v1.0-$COMMIT_SHA',
+      '.'
+    ]
+
+  # Paso 2: Subir la imagen a Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'push',
+      'gcr.io/r2d-interno-dev/csv-api:v1.0-$COMMIT_SHA'
+    ]
+
+  # Paso 3: Desplegar a Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: [
+      'run', 'deploy', 'csv-api',
+      '--image', 'gcr.io/r2d-interno-dev/csv-api:v1.0-$COMMIT_SHA',
+      '--region', 'europe-west1',
+      '--platform', 'managed',
+      '--allow-unauthenticated',
+      '--set-env-vars', 'PROJECT_ID=${r2d-interno-dev},DATASET_ID=${golden_okticket}'
+    ]
+
+images:
+  - 'gcr.io/r2d-interno-dev/csv-api:v1.0-$COMMIT_SHA'
+
+logsBucket: 'gs://prueba-okticket/log_exports'
